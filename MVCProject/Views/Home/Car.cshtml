@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVCProject.Models.DataBaseProject.Product>
+
+@{
+    ViewBag.Title = "Car";
+}
+<h2>Cart</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x=> x.FirstOrDefault().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().InCar)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        Html.RenderPartial("_ProductRow", item);
+    }
+</table>
+<div>
+    <p>
+        לתשלום: @Model.Sum(x => x.Price)
+        לחבר: @Model.Sum(x => x.Price * (decimal)0.90)
+    </p>
+    <p>
+        @Html.ActionLink("Sell", "Sell")
+    </p>
+</div>

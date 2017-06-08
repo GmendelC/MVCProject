@@ -1,0 +1,19 @@
+﻿@model MVCProject.Models.DataBaseProject.User
+
+<div class="nav navbar-nav navbar-right">
+        @using (Html.BeginForm("Login", "User"))
+        {
+            @Html.LabelFor(x => x.UserName)
+            <br />
+            @Html.EditorFor(x => x.UserName)
+            <br />
+            @Html.LabelFor(x => x.Password)
+            <br />
+            @Html.EditorFor(x => x.Password)
+            <br />
+            @Html.ValidationMessage("Loggin");
+            @Html.ActionLink("Register", "Add", "User")
+            <input type="submit" value="Login" />
+        }
+   
+</div>

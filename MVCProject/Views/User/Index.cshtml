@@ -1,0 +1,8 @@
+﻿    @if (!User.Identity.IsAuthenticated)
+    {
+        Html.RenderAction("LoginPage");
+    }
+    else
+    {
+        Html.RenderAction("UserPage");
+    }

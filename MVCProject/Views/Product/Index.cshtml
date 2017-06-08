@@ -1,0 +1,75 @@
+﻿@model MVCProject.Models.DataBaseProject.Product
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Product</h2>
+
+<div>
+    <h4>@Model.Title</h4>
+
+    <hr />
+        <div>
+            <p>
+                @Html.DisplayNameFor(model => model.ShortDescription):
+                <br />
+                @Html.DisplayFor(model => model.ShortDescription)
+            </p>
+            <p>
+                @Html.DisplayNameFor(model => model.LogDescription):
+                <br />
+                @Html.DisplayFor(model => model.LogDescription)
+            </p>
+            <p>
+                @Html.DisplayNameFor(model => model.Price)
+                <br />
+                @Html.DisplayFor(model => model.Price)
+            </p>
+        </div>
+  
+      <div>
+          <div class="sub-master-img">
+              @Html.DisplayNameFor(model => model.Image1)
+              <img src='@Url.Action("GetImage", "Product", new {id = Model.Id, target =1 })' alt="Image1" />
+          </div>
+
+          <div class="sub-master-img">
+              @Html.DisplayNameFor(model => model.Image2)
+              <img src='@Url.Action("GetImage", "Product", new {id = Model.Id, target =2 })' alt="Image1" />
+          </div>
+
+          <div class="sub-master-img">
+              @Html.DisplayNameFor(model => model.Image3)
+              <img src='@Url.Action("GetImage", "Product", new {id = Model.Id, target =3 })' alt="Image1" />
+          </div>
+
+    </div>
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (Model.SellingId == int.Parse(User.Identity.Name))
+            {@Html.ActionLink("Edit", "Edit", new { productId = Model.Id })}
+        }
+
+        @if (Model.ByingId == null &
+            !Model.InCar &
+            User.Identity.IsAuthenticated)
+        {
+            if (
+              Model.SellingId.Value != int.Parse(User.Identity.Name))
+            {
+                @Html.ActionLink("Add To Card", "AddToCar", "Product", Model, null)}
+        }
+    </div>
+
+        <div>
+            be published in -
+            @Html.DisplayFor(model => model.Date):
+            by @Html.DisplayFor(model => model.SellingUser.FirstName) 
+            @Html.DisplayFor(model => model.SellingUser.LastName) -
+            @Html.DisplayFor(model => model.SellingUser.Email)
+        </div>
+        
+</div>
+

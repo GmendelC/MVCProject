@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MVCProject.Models.DataBaseProject.Product>
+
+@{
+    ViewBag.Title = "Home";
+}
+<h2>Home</h2>
+<div>Oder by: @Html.ActionLink("Date","Index") @Html.ActionLink("Title", "ByTitle")</div>
+
+@foreach (var item in Model)
+{
+        @Html.Action("_ItemProduct", "Product", item)
+}
+

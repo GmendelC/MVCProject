@@ -1,0 +1,7 @@
+﻿@model MVCProject.Models.DataBaseProject.User
+
+<div class="nav navbar-nav navbar-right">
+    <text>Wellecome @Model.FirstName @Model.LastName</text>
+    @Html.ActionLink("Publish","Add","Product", null, new { @class = "buttonLink" })
+    @Html.ActionLink("Logout", "Logout", "User")
+</div>

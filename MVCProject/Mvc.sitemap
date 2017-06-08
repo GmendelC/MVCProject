@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+    <mvcSiteMapNode title="Abouht" controller="Home" action="Abouht"/>
+    <mvcSiteMapNode title="Products" visibility="SiteMapPathHelper,!*" clickable="false" controller="Home" action="Index">
+      <!--<mvcSiteMapNode title="Display" visibility="SiteMapPathHelper,!*" controller="Product" action="Index" dynamicNodeProvider="MVCProject.Models.ProductNodeProvide, MVCProject" />-->
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Register" controller="User" action="Add"/>
+    <mvcSiteMapNode title="Cart" controller="Home" action="Car"/>
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

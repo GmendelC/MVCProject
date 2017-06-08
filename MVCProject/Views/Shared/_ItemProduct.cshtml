@@ -1,0 +1,30 @@
+﻿@model MVCProject.Models.DataBaseProject.Product
+
+<div class="product-short">
+    <h3> @Html.DisplayFor(x => x.Title)</h3>
+    <div>
+        <span class="display-label">
+            @Html.DisplayNameFor(x => x.ShortDescription) :
+        </span>
+        <span class="display-field">
+            @Html.DisplayFor(x => x.ShortDescription)
+        </span>
+    </div>
+    <img src='@Url.Action("GetImage", "Product", new { id = Model.Id, target = 1 })' alt="Image @Model.Title" />
+
+    @Html.DisplayNameFor(x => x.Date) : @Html.DisplayFor(x => x.Date)
+
+    @*{ int? id; int.TryParse(User.Identity.Name,out id); }*@
+    @if (Model.ByingId == null &
+                !Model.InCar &
+                User.Identity.IsAuthenticated)
+    {
+        if (
+          Model.SellingId.Value != int.Parse(User.Identity.Name))
+        {
+            @Html.ActionLink("Add To Card", "AddToCar", "Product", Model, null)}
+            } :
+
+    @Html.ActionLink("Details", "Index", "Product", new { id = Model.Id }, null)
+</div>
+

@@ -1,0 +1,17 @@
+﻿a.buttonLink {
+    background: url('../Images/publish.jpg');
+    display: block;
+    width:90px;
+    height:40px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.checkboxLink {
+    background: url('../Images/check.png');
+    display: block;
+    width:10px;
+    height: 10px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+

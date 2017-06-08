@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InternertMarkertEntites.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="InternertMarkertEntitesStoreContainer">
+    <EntitySet Name="Users" EntityType="InternertMarkertEntites.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="InternertMarkertEntites.Store.Products" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SellingProduct" Association="InternertMarkertEntites.Store.SellingProduct">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="ByingProduct" Association="InternertMarkertEntites.Store.ByingProduct">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ShortDescription" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="LogDescription" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="InCar" Type="bit" Nullable="false" />
+    <Property Name="SellingId" Type="int" Nullable="true" />
+    <Property Name="ByingId" Type="int" Nullable="true" />
+    <Property Name="Image1_File" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Image1_MIME" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Image2_File" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Image2_MIME" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Image3_File" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Image3_MIME" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="SellingProduct">
+    <End Role="User" Type="InternertMarkertEntites.Store.Users" Multiplicity="0..1" />
+    <End Role="Product" Type="InternertMarkertEntites.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SellingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ByingProduct">
+    <End Role="User" Type="InternertMarkertEntites.Store.Users" Multiplicity="0..1" />
+    <End Role="Product" Type="InternertMarkertEntites.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ByingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="InternertMarkertEntites" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="InternertMarkertEntitesContainer" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Users" EntityType="InternertMarkertEntites.User" />
+          <EntitySet Name="Products" EntityType="InternertMarkertEntites.Product" />
+          <AssociationSet Name="SellingProduct" Association="InternertMarkertEntites.SellingProduct">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="ByingProduct" Association="InternertMarkertEntites.ByingProduct">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" annotation:StoreGeneratedPattern="None" ConcurrencyMode="None" cg:SetterAccess="Public" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" />
+          <NavigationProperty Name="SellingProducts" Relationship="InternertMarkertEntites.SellingProduct" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="ByingProducts" Relationship="InternertMarkertEntites.ByingProduct" FromRole="User" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" Nullable="false" MaxLength="500" Unicode="true" />
+          <Property Name="LogDescription" Type="String" Nullable="false" MaxLength="4000" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="InCar" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SellingUser" Relationship="InternertMarkertEntites.SellingProduct" FromRole="Product" ToRole="User" />
+          <Property Name="SellingId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="ByingUser" Relationship="InternertMarkertEntites.ByingProduct" FromRole="Product" ToRole="User" />
+          <Property Name="ByingId" Type="Int32" Nullable="true" />
+          <Property Name="Image1" Type="InternertMarkertEntites.FileEntity" Nullable="false" />
+          <Property Name="Image2" Type="InternertMarkertEntites.FileEntity" Nullable="false" />
+          <Property Name="Image3" Type="InternertMarkertEntites.FileEntity" Nullable="false" />
+        </EntityType>
+        <Association Name="SellingProduct">
+          <End Type="InternertMarkertEntites.User" Role="User" Multiplicity="0..1" />
+          <End Type="InternertMarkertEntites.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SellingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ByingProduct">
+          <End Type="InternertMarkertEntites.User" Role="User" Multiplicity="0..1" />
+          <End Type="InternertMarkertEntites.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ByingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="FileEntity" >
+          <Property Type="Binary" Name="File" Nullable="true" />
+          <Property Type="String" Name="MIME" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InternertMarkertEntitesStoreContainer" CdmEntityContainer="InternertMarkertEntitesContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(InternertMarkertEntites.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(InternertMarkertEntites.Product)">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="LogDescription" ColumnName="LogDescription" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="InCar" ColumnName="InCar" />
+          <ScalarProperty Name="SellingId" ColumnName="SellingId" />
+          <ScalarProperty Name="ByingId" ColumnName="ByingId" />
+          <ComplexProperty Name="Image1" TypeName="InternertMarkertEntites.FileEntity">
+            <ScalarProperty Name="File" ColumnName="Image1_File" />
+            <ScalarProperty Name="MIME" ColumnName="Image1_MIME" />
+          </ComplexProperty>
+          <ComplexProperty Name="Image2" TypeName="InternertMarkertEntites.FileEntity">
+            <ScalarProperty Name="File" ColumnName="Image2_File" />
+            <ScalarProperty Name="MIME" ColumnName="Image2_MIME" />
+          </ComplexProperty>
+          <ComplexProperty Name="Image3" TypeName="InternertMarkertEntites.FileEntity">
+            <ScalarProperty Name="File" ColumnName="Image3_File" />
+            <ScalarProperty Name="MIME" ColumnName="Image3_MIME" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,20 @@
+﻿@model MVCProject.Models.DataBaseProject.Product
+
+<tr>
+
+    <td> @Html.DisplayFor(x => x.Title)</td>
+    <td> @Html.DisplayFor(x => x.Price)</td>
+
+    
+    @using (Html.BeginForm("RemoveFromCar", "Product", FormMethod.Get))
+    {
+        <td>
+            <input type="hidden" name="id"
+                   value="@Model.Id" />
+        </td>
+                <td> @Html.CheckBox(Model.Id.ToString(), true, new { onClick = "$(this.form).submit();" })</td>
+    }
+   @*<td>
+       @Html.ActionLink("Remove","RemoveFromCar", "Product",new { id = @Model.Id } , new {@class = "checkboxLink" })
+   </td>*@
+</tr>
